@@ -1,0 +1,1 @@
+# seed-global-assignment
