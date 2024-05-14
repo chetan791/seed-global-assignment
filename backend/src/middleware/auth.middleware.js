@@ -1,5 +1,7 @@
+const jwt = require("jsonwebtoken");
+
 const auth = (req, res, next) => {
-  token = req.headers.authrization.split(" ")[1];
+  token = req.headers.authorization?.split(" ")[1];
   if (token) {
     const decoded = jwt.verify(token, "secretkey");
     if (decoded) {
@@ -9,9 +11,11 @@ const auth = (req, res, next) => {
       req.body.email = decoded.email;
       next();
     } else {
-      res.send("login again");
+      res.send("not authorized");
     }
   } else {
-    res.send("login again");
+    res.send("please login");
   }
 };
+
+module.exports = auth;

@@ -3,6 +3,7 @@ const universityModel = require("../model/universityModel");
 const universityRouter = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const auth = require("../middleware/auth.middleware");
 
 // endpoint to register university
 universityRouter.post("/register", async (req, res) => {
@@ -16,7 +17,7 @@ universityRouter.post("/register", async (req, res) => {
         if (err) {
           res.send({ message: err.message });
         } else {
-          const university = universityModel.create({
+          const university = await universityModel.create({
             name,
             email,
             password: hash,
@@ -24,7 +25,7 @@ universityRouter.post("/register", async (req, res) => {
             country,
             cources,
           });
-          await university.save();
+          university.save();
           res.send({ message: "university registered successfully" });
         }
       });
@@ -44,8 +45,8 @@ universityRouter.post("/login", async (req, res) => {
         if (result) {
           const token = jwt.sign(
             { universityID: university._id },
-            { expiresIn: "30" },
-            "secretkey"
+            "secretkey",
+            { expiresIn: "30d" }
           );
           res.send({ message: "login success", token: token });
         } else {
@@ -71,10 +72,11 @@ universityRouter.get("/", async (req, res) => {
 });
 
 // endpoint to add courses to university
-universityRouter.patch("/addcourse", async (req, res) => {
-  const { id, course } = req.body;
+universityRouter.patch("/addcourse/:id", auth, async (req, res) => {
+  const { universityID, course } = req.body;
+  const { id } = req.params;
   try {
-    const university = await universityModel.findById(id);
+    const university = await universityModel.findById(universityID);
     if (id == university._id) {
       const update = await universityModel.findByIdAndUpdate(
         id,
@@ -91,10 +93,11 @@ universityRouter.patch("/addcourse", async (req, res) => {
 });
 
 // endpoint to delete courses from university
-universityRouter.patch("/deletecourse", async (req, res) => {
-  const { id, course } = req.body;
+universityRouter.patch("/deletecourse/:id", auth, async (req, res) => {
+  const { universityID, course } = req.body;
+  const { id } = req.params;
   try {
-    const university = await universityModel.findById(id);
+    const university = await universityModel.findById(universityID);
     if (id == university._id) {
       const update = await universityModel.findByIdAndUpdate(
         id,
@@ -111,7 +114,7 @@ universityRouter.patch("/deletecourse", async (req, res) => {
 });
 
 // endpoint to delete university
-universityRouter.delete("/:id", async (req, res) => {
+universityRouter.delete("/:id", auth, async (req, res) => {
   const { id } = req.params;
   try {
     const university = await universityModel.findById(id);

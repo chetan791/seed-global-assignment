@@ -16,14 +16,14 @@ studentRouter.post("/register", async (req, res) => {
         if (err) {
           res.send({ message: err.message });
         } else {
-          const student = StudentModel.create({
+          const student = await StudentModel.create({
             name,
             email,
             password: hash,
             age,
             gender,
           });
-          await student.save();
+          student.save();
           res.send({ message: "student registered successfully" });
         }
       });
@@ -49,7 +49,7 @@ studentRouter.post("/login", async (req, res) => {
             },
             "secretkey",
             {
-              expiresIn: "30",
+              expiresIn: "30d",
             }
           );
           res.send({ message: "login success", token: token });
