@@ -2,7 +2,7 @@ const express = require("express");
 const studentRouter = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const StudentModel = require("../model/studentmodel");
+const StudentModel = require("../model/studentModel");
 
 // endpoint to register student
 studentRouter.post("/register", async (req, res) => {
@@ -41,9 +41,17 @@ studentRouter.post("/login", async (req, res) => {
     if (student) {
       bcrypt.compare(password, student.password, (err, result) => {
         if (result) {
-          const token = jwt.sign({ studentID: student._id,name:student.name,email:student.email }, "secretkey", {
-            expiresIn: "30",
-          });
+          const token = jwt.sign(
+            {
+              studentID: student._id,
+              name: student.name,
+              email: student.email,
+            },
+            "secretkey",
+            {
+              expiresIn: "30",
+            }
+          );
           res.send({ message: "login success", token: token });
         } else {
           res.send({ message: "login failed" });
