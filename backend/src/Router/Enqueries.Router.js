@@ -5,8 +5,10 @@ const EnqueriesRouter = express.Router();
 
 EnqueriesRouter.use(auth);
 // endpoint to create Enqueries by student
-EnqueriesRouter.post("/create", async (req, res) => {
-  const { name, email, message, studentID, course, universityID } = req.body;
+EnqueriesRouter.post("/create/:id", async (req, res) => {
+  const { name, email, message, studentID, course } = req.body;
+
+  const universityID = req.params.id;
 
   try {
     const Enquiry = await EnquiryModel.create({

@@ -13,7 +13,7 @@ export const StudentLoginSignup = () => {
     return state.AuthReducer;
   });
 
-  console.log(res);
+//   console.log(res);
 
   // for toggle
   const [show, setShow] = useState(false);

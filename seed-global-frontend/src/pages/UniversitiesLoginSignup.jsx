@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
 export const UniversitiesLoginSignup = () => {
-  return (
-    <div>UniversitiesLoginSignup</div>
-  )
-}
+  return <div>UniversitiesLoginSignup</div>;
+};

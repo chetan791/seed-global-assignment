@@ -16,12 +16,20 @@ export const getuniversities = () => async (dispatch) => {
 };
 
 export const applyForUniversity = (details) => async (dispatch) => {
-  dispatch({ type: LOADING });
+  console.log(details.universityID, "1");
   try {
     const res = await axios.post(
-      "https://seed-global-assignment.onrender.com/enquries/",
-      details
+      `https://seed-global-assignment.onrender.com/create/${details.universityID}`,
+      details,
+      {
+        headers: {
+          Authorization: `Bearer ${details.token}`,
+          "Content-Type": "application/json",
+        },
+      }
     );
+    console.log(res.data);
+    alert("applied for university successfully");
   } catch (error) {
     console.log(error);
     dispatch({ type: FETCH_FAILURE, payload: error });

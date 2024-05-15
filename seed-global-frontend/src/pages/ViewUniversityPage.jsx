@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../css/view.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { applyForUniversity } from "../redux/DataReducer/Action";
 
 export const ViewUniversityPage = ({ info }) => {
-  const { name, email } = useSelector((store) => store.AuthReducer);
-  const [showmodal, setShowModal] = useState(false);
-  const [enquiry, setEnquiry] = useState({
-    name: "",
-    email: "",
-    message: "",
-    universityID: "",
-    course: "",
-  });
+  const { name, email, token } = useSelector((store) => store.AuthReducer);
+  const dispatch = useDispatch();
 
   // to open modal
-
   const location = useLocation();
   const { item } = location.state;
+  const [showmodal, setShowModal] = useState(false);
+  const [enquiry, setEnquiry] = useState({
+    name: name,
+    email: email,
+    message: "",
+    universityID: item._id,
+    course: "",
+    token: token,
+  });
+  //   console.log(item);
 
   // scroll to top after clicking on apply
   useEffect(() => {
@@ -28,6 +31,11 @@ export const ViewUniversityPage = ({ info }) => {
       });
     }
   }, [showmodal]);
+
+  const handelApply = () => {
+    dispatch(applyForUniversity(enquiry));
+    setShowModal(false);
+  };
 
   return (
     <div style={{ paddingTop: "100px" }} id="ViewUniversityPage">
@@ -69,8 +77,6 @@ export const ViewUniversityPage = ({ info }) => {
                   ...enquiry,
                   universityID: item._id,
                   course: course,
-                  name: name,
-                  email: email,
                 });
                 setShowModal(true);
               }}
@@ -93,7 +99,7 @@ export const ViewUniversityPage = ({ info }) => {
               setEnquiry({ ...enquiry, message: e.target.value })
             }
           ></textarea>
-          <button className="blue-button" onClick={() => console.log(enquiry)}>
+          <button className="blue-button" onClick={handelApply}>
             Apply
           </button>
         </div>
