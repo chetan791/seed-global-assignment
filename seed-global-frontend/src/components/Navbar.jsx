@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const { role, isAuth } = useSelector((state) => state.AuthReducer);
-  console.log(role);
+  // console.log(role);
   return (
     <nav>
       <div>

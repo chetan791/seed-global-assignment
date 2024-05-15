@@ -30,9 +30,10 @@ EnqueriesRouter.post("/create/:id", async (req, res) => {
 EnqueriesRouter.get("/", async (req, res) => {
   const { studentID, universityID } = req.body;
   try {
-    const Enqueries = await EnquiryModel.find({
-      university: universityID || studentID,
-    });
+    const Enqueries = await EnquiryModel.find(
+      universityID ? { universityID: universityID } : { studentID: studentID }
+    );
+    console.log(Enqueries);
     res.send(Enqueries);
   } catch (error) {
     res.send({ message: "internal server error", error });
