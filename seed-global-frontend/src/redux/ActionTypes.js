@@ -1,0 +1,13 @@
+//Auth Reducer Action Types
+export const STUDENTLOGINSUCCESS = "STUDENTLOGINSUCCESS";
+export const UNIVERSITYLOGINSUCESS = "UNIVERSITYLOGINSUCESS";
+export const LOGINFAILURE = "LOGINFAILURE";
+export const LOADING = "LOADING";
+export const LOGOUT = "LOGOUT";
+export const SETROLE = "SETROLE";
+
+//Data Reducer Action Types
+export const FETCH_UNIVERSITIES = "FETCH_UNIVERSITIES";
+export const FETCH_STUDENTS = "FETCH_STUDENTS";
+export const FETCH_ENQURIES = "FETCH_ENQURIES";
+export const FETCH_FAILURE = "FETCH_FAILURE";

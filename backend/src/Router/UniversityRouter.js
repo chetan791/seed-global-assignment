@@ -11,7 +11,7 @@ universityRouter.post("/register", async (req, res) => {
   try {
     verifyEmail = await universityModel.findOne({ email: email });
     if (verifyEmail) {
-      res.send({ message: "university already exists" });
+      res.send({ message: "user already exists please login" });
     } else {
       bcrypt.hash(password, 10, async (err, hash) => {
         if (err) {
@@ -50,7 +50,7 @@ universityRouter.post("/login", async (req, res) => {
           );
           res.send({ message: "login success", token: token });
         } else {
-          res.send({ message: "login failed" });
+          res.send({ message: "wrong credentials" });
         }
       });
     } else {

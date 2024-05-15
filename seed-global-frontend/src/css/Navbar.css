@@ -1,0 +1,27 @@
+nav {
+  display: flex;
+  background-color: transparent;
+  z-index: 3;
+  width: 86%;
+  height: 100px;
+  position: absolute;
+  justify-content: space-between;
+  padding: 10px 7%;
+  background-color: #0d8097;
+}
+
+nav img {
+  height: 90px;
+  margin: 10px 0 0 10px;
+  cursor: pointer;
+  width: 100px;
+  z-index: 3;
+}
+
+nav > ul {
+  display: flex;
+  list-style: none;
+  color: white;
+  gap: 20px;
+  align-items: center;
+}

@@ -1,0 +1,115 @@
+#RoleContainer {
+  background-image: url("https://www.seedglobaleducation.com/wp-content/uploads/2023/06/home-page_result-1.webp");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 13%;
+  overflow: hidden;
+  position: relative;
+}
+#RoleContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Adjust the alpha value to change the dimming level */
+}
+
+#login_container {
+  z-index: 1;
+  display: flex;
+  /* border: 1px solid red; */
+  justify-content: center;
+  align-items: center;
+  /* height: 100vh; */
+  background-color: white;
+  width: 80%;
+  border-radius: 20px;
+  margin: 0;
+  margin-bottom: 100px;
+}
+
+#login_container > div:nth-child(1) {
+  border-right: 1px solid grey;
+}
+.login {
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 35px 0;
+  font-weight: 600;
+}
+
+.login img {
+  height: 320px;
+}
+
+.login button {
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: none;
+  border: 2px solid #f28e43;
+  background-color: white;
+  font-weight: 600;
+}
+
+.login button:hover {
+  background-color: #f28e43;
+  color: white;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 766px) and (min-width: 380px) {
+  #RoleContainer {
+    padding-top: 30%;
+  }
+  #login_container {
+    flex-direction: column;
+    background-color: transparent;
+    gap: 30px;
+  }
+
+  .login {
+    background-color: white;
+    border-radius: 20px;
+  }
+
+  .login img {
+    height: 220px;
+  }
+}
+
+@media screen and (max-width: 379px) {
+  #RoleContainer {
+    padding-top: 50%;
+  }
+  #login_container {
+    flex-direction: column;
+    background-color: transparent;
+    gap: 30px;
+  }
+
+  .login {
+    background-color: white;
+    border-radius: 20px;
+    font-size: small;
+  }
+
+  .login img {
+    height: 220px;
+  }
+}
