@@ -5,6 +5,7 @@ import { LandingPage } from "./LandingPage";
 import { Universities } from "./Universities";
 import { StudentLoginSignup } from "./StudentLoginSignup";
 import { ViewUniversityPage } from "./ViewUniversityPage";
+import { EnrolledPage } from "./EnrolledPage";
 
 export const MainRoutes = () => {
   return (
@@ -14,6 +15,7 @@ export const MainRoutes = () => {
       <Route path="/universities" element={<Universities />} />
       <Route path="/student-Login-Signup" element={<StudentLoginSignup />} />
       <Route path="/view" element={<ViewUniversityPage />} />
+      <Route path="/enrolled" element={<EnrolledPage />} />
     </Routes>
   );
 };

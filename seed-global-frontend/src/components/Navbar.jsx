@@ -32,7 +32,9 @@ export const Navbar = () => {
           <Link to={"/universities"}>
             <li>universities</li>
           </Link>
-          <li>applications</li>
+          <Link to={"/enrolled"}>
+            <li>applications</li>
+          </Link>
         </ul>
       ) : (
         <ul className="navbar_options">

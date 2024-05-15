@@ -27,9 +27,12 @@ EnqueriesRouter.post("/create/:id", async (req, res) => {
 });
 
 // endpoint to get all Enqueries of a particular university or student
-EnqueriesRouter.get("/:id", async (req, res) => {
+EnqueriesRouter.get("/", async (req, res) => {
+  const { studentID, universityID } = req.body;
   try {
-    const Enqueries = await EnquiryModel.find({ university: req.params.id });
+    const Enqueries = await EnquiryModel.find({
+      university: universityID || studentID,
+    });
     res.send(Enqueries);
   } catch (error) {
     res.send({ message: "internal server error", error });
