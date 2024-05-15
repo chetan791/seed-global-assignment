@@ -14,3 +14,16 @@ export const getuniversities = () => async (dispatch) => {
     dispatch({ type: FETCH_FAILURE, payload: error });
   }
 };
+
+export const applyForUniversity = (details) => async (dispatch) => {
+  dispatch({ type: LOADING });
+  try {
+    const res = await axios.post(
+      "https://seed-global-assignment.onrender.com/enquries/",
+      details
+    );
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: FETCH_FAILURE, payload: error });
+  }
+};

@@ -9,6 +9,12 @@ export const StudentLoginSignup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const res = useSelector((state) => {
+    return state.AuthReducer;
+  });
+
+  console.log(res);
+
   // for toggle
   const [show, setShow] = useState(false);
 

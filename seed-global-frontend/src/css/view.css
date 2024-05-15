@@ -43,6 +43,40 @@
   border-radius: 10px;
 }
 
+#modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#modal div {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  flex-direction: column;
+  background-color: #f28e43;
+  padding: 30px;
+  border-radius: 10px;
+  color: white;
+  gap: 20px;
+  width: 30%;
+  border-radius: 20px;
+}
+
+#modal button {
+  width: 100px;
+  display: block;
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 766px) {
   #ViewUniversityPage {
     padding-top: 50px;
@@ -53,5 +87,9 @@
 
   #course-container {
     grid-template-columns: 1fr;
+  }
+
+  #modal div {
+    width: 60%;
   }
 }

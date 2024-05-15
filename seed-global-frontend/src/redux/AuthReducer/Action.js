@@ -46,9 +46,14 @@ export const login = (details) => async (dispatch) => {
           payload: { ...details, token: res.data },
         });
       } else {
+        // console.log(res.data);
         dispatch({
           type: STUDENTLOGINSUCCESS,
-          payload: { ...details, token: res.data },
+          payload: {
+            ...details,
+            token: res.data.response.token,
+            name: res.data.response.name,
+          },
         });
       }
       alert("login successful");
