@@ -38,13 +38,16 @@ export const login = (details) => async (dispatch) => {
       details
     );
     console.log(res.data);
-    if (res.data.message === "wrong credentials") {
+    if (
+      res.data.message === "wrong credentials" ||
+      res.data.message === "university not found"
+    ) {
       alert("login failed");
     } else {
       if (details.role === "university") {
         dispatch({
           type: UNIVERSITYLOGINSUCESS,
-          payload: { ...details, token: res.data },
+          payload: { ...details, token: res.data.token },
         });
       } else {
         // console.log(res.data);
@@ -72,3 +75,24 @@ export const logout = () => async (dispatch) => {
 export const setRole = (details) => async (dispatch) => {
   dispatch({ type: SETROLE, payload: details });
 };
+
+// export const addNewCourse = (details) => async (dispatch) => {
+//   dispatch({ type: LOADING });
+//   try {
+//     const res = await axios.patch(
+//       `https://seed-global-assignment.onrender.com/university/addcourse/${details._id}`,
+//       details,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${details.token}`,
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+//     console.log(res.data);
+//     alert("added successfully");
+//   } catch (error) {
+//     console.log(error);
+//     dispatch({ type: LOGINFAILURE, payload: error });
+//   }
+// };

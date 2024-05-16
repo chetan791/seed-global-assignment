@@ -4,12 +4,13 @@ import {
   FETCH_STUDENTS,
   FETCH_UNIVERSITIES,
   LOADING,
+  UPDATE_ENQURIES,
 } from "../ActionTypes";
 
 const initialState = {
   universities: [],
   students: [],
-  enquries: [],
+  enquiries: [],
   loading: false,
   isError: "",
 };
@@ -24,27 +25,38 @@ const DataReducer = (state = initialState, action) => {
       };
     case FETCH_UNIVERSITIES:
       return {
+        loading: false,
         ...state,
         universities: payload,
-        loading: false,
       };
     case FETCH_STUDENTS:
       return {
+        loading: false,
         ...state,
         students: payload,
-        loading: false,
       };
     case FETCH_ENQURIES:
       return {
-        ...state,
-        enquries: payload,
         loading: false,
+        ...state,
+        enquiries: payload,
       };
     case FETCH_FAILURE:
       return {
-        ...state,
         loading: false,
+        ...state,
         isError: payload,
+      };
+    case UPDATE_ENQURIES:
+      return {
+        ...state,
+        enquiries: state.enquiries.map((element) => {
+          if (element._id === payload._id) {
+            return payload;
+          } else {
+            return element;
+          }
+        }),
       };
     default:
       return state;

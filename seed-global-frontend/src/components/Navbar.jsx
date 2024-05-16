@@ -41,8 +41,7 @@ export const Navbar = () => {
           <Link to={"/landing"}>
             <li>home</li>
           </Link>
-          <li>courses</li>
-          <li>students</li>
+          {/* <li>courses</li> */}
           <Link to={"/enquiries"}>
             <li>enquiries</li>
           </Link>

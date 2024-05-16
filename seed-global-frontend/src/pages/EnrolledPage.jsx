@@ -7,8 +7,8 @@ import { EnrolledCard } from "../components/EnrolledCard";
 export const EnrolledPage = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.AuthReducer);
-  const { enquries } = useSelector((state) => state.DataReducer);
-  console.log(enquries);
+  const { enquiries } = useSelector((state) => state.DataReducer);
+  console.log(enquiries);
 
   useEffect(() => {
     dispatch(getEnrolledUniversities(token));
@@ -25,10 +25,9 @@ export const EnrolledPage = () => {
     >
       <h1>Enrolled Page</h1>
       <div id="EnrolledPage-container">
-        {enquries.map((element) => (
-          <EnrolledCard element={element} />
-        ))}
-        {enquries.length == 0 && <h1>NOT Enrolled</h1>}
+        {enquiries &&
+          enquiries.map((element) => <EnrolledCard element={element} />)}
+        {!enquiries && <h1>NOT Enrolled</h1>}
       </div>
     </div>
   );

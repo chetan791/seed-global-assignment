@@ -4,12 +4,13 @@ import logo from "../assets/SEED_LOGO.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login, signup } from "../redux/AuthReducer/Action";
+import { Loader } from "../components/Loader";
 
 export const UniversityLoginSignup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const res = useSelector((state) => {
+  const { isAuth, isloading } = useSelector((state) => {
     return state.AuthReducer;
   });
 
@@ -46,7 +47,10 @@ export const UniversityLoginSignup = () => {
   const handelLogin = (e) => {
     // e.preventDefault();
     dispatch(login(logindata));
-    navigate("/landing");
+
+    if (isloading === false) {
+      navigate("/landing");
+    }
   };
 
   // for signup
@@ -207,6 +211,7 @@ export const UniversityLoginSignup = () => {
           </button>
         </div>
       )}
+      {isloading ? <Loader /> : null}
     </div>
   );
 };

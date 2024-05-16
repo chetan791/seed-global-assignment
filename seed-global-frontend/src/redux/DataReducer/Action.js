@@ -4,6 +4,7 @@ import {
   FETCH_FAILURE,
   FETCH_UNIVERSITIES,
   LOADING,
+  UPDATE_ENQURIES,
 } from "../ActionTypes";
 
 export const getuniversities = () => async (dispatch) => {
@@ -53,12 +54,35 @@ export const getEnrolledUniversities = (token) => async (dispatch) => {
         },
       }
     );
-    console.log(res.data);
+    console.log(res.data, "data");
     if (res.data == "please login") {
       alert("please Login");
-    } else if (res.data !== "university not found") {
+    } else {  
       dispatch({ type: FETCH_ENQURIES, payload: res.data });
     }
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: FETCH_FAILURE, payload: error });
+  }
+};
+
+export const updateEnquries = (details) => async (dispatch) => {
+  dispatch({ type: LOADING });
+  console.log(details);
+  try {
+    const res = await axios.patch(
+      `https://seed-global-assignment.onrender.com/enquries/update/${details._id}`,
+      details,
+      {
+        headers: {
+          Authorization: `Bearer ${details.token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    console.log(res.data);
+    dispatch({ type: UPDATE_ENQURIES, payload: res.data.update });
+    alert("updated successfully");
   } catch (error) {
     console.log(error);
     dispatch({ type: FETCH_FAILURE, payload: error });

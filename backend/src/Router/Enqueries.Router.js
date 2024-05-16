@@ -33,7 +33,6 @@ EnqueriesRouter.get("/", async (req, res) => {
     const Enqueries = await EnquiryModel.find(
       universityID ? { universityID: universityID } : { studentID: studentID }
     ).populate("universityID", "name");
-    console.log(Enqueries);
     res.send(Enqueries);
   } catch (error) {
     res.send({ message: "internal server error", error });
