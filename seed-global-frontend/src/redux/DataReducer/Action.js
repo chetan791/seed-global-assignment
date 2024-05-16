@@ -44,14 +44,21 @@ export const applyForUniversity = (details) => async (dispatch) => {
 export const getEnrolledUniversities = (token) => async (dispatch) => {
   dispatch({ type: LOADING });
   try {
-    const res = await axios.get(`http://localhost:5000/enquries/`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await axios.get(
+      `https://seed-global-assignment.onrender.com/enquries/`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
     console.log(res.data);
-    dispatch({ type: FETCH_ENQURIES, payload: res.data });
+    if (res.data == "please login") {
+      alert("please Login");
+    } else {
+      dispatch({ type: FETCH_ENQURIES, payload: res.data });
+    }
   } catch (error) {
     console.log(error);
     dispatch({ type: FETCH_FAILURE, payload: error });

@@ -32,7 +32,7 @@ EnqueriesRouter.get("/", async (req, res) => {
   try {
     const Enqueries = await EnquiryModel.find(
       universityID ? { universityID: universityID } : { studentID: studentID }
-    );
+    ).populate("universityID", "name");
     console.log(Enqueries);
     res.send(Enqueries);
   } catch (error) {
