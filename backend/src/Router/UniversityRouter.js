@@ -23,7 +23,7 @@ universityRouter.post("/register", async (req, res) => {
             password: hash,
             address,
             country,
-            cources,
+            courses,
           });
           university.save();
           res.send({ message: "university registered successfully" });

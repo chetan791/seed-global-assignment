@@ -1,0 +1,14 @@
+.input-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  /* border: 1px solid black; */
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 766px) {
+  .input-container {
+    grid-template-columns: 1fr;
+  }
+}

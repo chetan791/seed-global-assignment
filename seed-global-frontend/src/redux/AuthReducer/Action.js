@@ -9,12 +9,13 @@ import {
 } from "../ActionTypes";
 
 export const signup = (details) => async (dispatch) => {
+  console.log(details);
   try {
     const res = await axios.post(
       `https://seed-global-assignment.onrender.com/${details.role}/register`,
       details
     );
-    console.log(res.data.message);
+    // console.log(res);
     if (
       res.data.message === "user already exists please login" ||
       res.data.message === "student already exists"
@@ -36,8 +37,8 @@ export const login = (details) => async (dispatch) => {
       `https://seed-global-assignment.onrender.com/${details.role}/login`,
       details
     );
-    // console.log(res.data);
-    if (res.message === "wrong credentials") {
+    console.log(res.data);
+    if (res.data.message === "wrong credentials") {
       alert("login failed");
     } else {
       if (details.role === "university") {

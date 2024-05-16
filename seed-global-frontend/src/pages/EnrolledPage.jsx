@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "../css/enrolled.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getEnrolledUniversities } from "../redux/DataReducer/Action";
+import { EnrolledCard } from "../components/EnrolledCard";
 
 export const EnrolledPage = () => {
   const dispatch = useDispatch();
@@ -12,21 +13,23 @@ export const EnrolledPage = () => {
   useEffect(() => {
     dispatch(getEnrolledUniversities(token));
   }, []);
+
   return (
-    <div id="EnrolledPage-container">
+    <div
+      style={{
+        paddingTop: "100px",
+        paddingRight: "7%",
+        paddingLeft: "7%",
+        paddingBottom: "50px",
+      }}
+    >
       <h1>Enrolled Page</h1>
-      {enquries.map((element) => (
-        <div className="card">
-          <div className="card-content">
-            <h2 className="card-title">{element.name}</h2>
-            <p className="card-body">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio,
-              culpa.
-            </p>
-          </div>
-        </div>
-      ))}
-      {enquries.length == 0 && <h1>NOT Enrolled</h1>}
+      <div id="EnrolledPage-container">
+        {enquries.map((element) => (
+          <EnrolledCard element={element} />
+        ))}
+        {enquries.length == 0 && <h1>NOT Enrolled</h1>}
+      </div>
     </div>
   );
 };

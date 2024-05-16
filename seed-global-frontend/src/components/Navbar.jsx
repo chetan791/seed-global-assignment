@@ -43,7 +43,9 @@ export const Navbar = () => {
           </Link>
           <li>courses</li>
           <li>students</li>
-          <li>enquiries</li>
+          <Link to={"/enquiries"}>
+            <li>enquiries</li>
+          </Link>
         </ul>
       )}
     </nav>

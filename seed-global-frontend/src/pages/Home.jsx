@@ -27,7 +27,7 @@ export const Home = () => {
         <div className="login">
           <img src={university} alt="university" />
           <p>Are you a university representative?</p>
-          <Link to={"/landing"}>
+          <Link to={"/university-login-signup"}>
             <button onClick={() => chooseRole("university")}>
               GET STARTED
             </button>

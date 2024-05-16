@@ -56,7 +56,7 @@ export const getEnrolledUniversities = (token) => async (dispatch) => {
     console.log(res.data);
     if (res.data == "please login") {
       alert("please Login");
-    } else {
+    } else if (res.data !== "university not found") {
       dispatch({ type: FETCH_ENQURIES, payload: res.data });
     }
   } catch (error) {
